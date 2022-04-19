@@ -11,4 +11,31 @@
 // * Return a result from the function
 // * The Err variant should detail the reason why they cannot make a purchase
 
-fn main() {}
+struct Customer {
+    name: String,
+    age: i32,
+}
+
+impl Customer {
+    fn new(name: String, age: i32) -> Self {
+        Self { name, age }
+    }
+}
+
+fn can_purchase(c: &Customer) -> Result<bool, String> {
+    if c.age < 21 {
+        Err("customer under age of 21!".to_owned())
+    } else {
+        Ok(true)
+    }
+}
+
+fn main() {
+    let c1 = Customer::new("Mohamed".to_owned(), 32);
+    let c2 = Customer::new("Ghita".to_owned(), 5);
+
+    let r = can_purchase(&c1);
+    println!("{:?} {:?}", c1.name, r);
+    let r2 = can_purchase(&c2);
+    println!("{:?} {:?}", c2.name, r2);
+}
