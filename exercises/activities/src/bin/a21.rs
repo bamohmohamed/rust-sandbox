@@ -14,6 +14,11 @@ struct User {
     name: String,
 }
 
+impl User{
+    fn new(user_id:i32,name:String)->Self {
+        Self{user_id,name}
+    }
+}
 /// Locates a user id based on the name.
 fn find_user(name: &str) -> Option<i32> {
     let name = name.to_lowercase();
@@ -25,4 +30,14 @@ fn find_user(name: &str) -> Option<i32> {
     }
 }
 
-fn main() {}
+fn main() {
+
+    let name ="mo";
+
+    let some_user = find_user(&name).map(|id| User::new(id,String::from(name)));
+    match some_user {
+        Some(user) => println!("{:?}",user),
+        None => println!("user not found")
+    }
+
+}
