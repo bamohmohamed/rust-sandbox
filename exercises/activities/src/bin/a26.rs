@@ -8,4 +8,10 @@
 // * (OPTIONAL) Read the documentation section `Formatting and Parsing`
 //   for examples on how to create custom time formats
 
-fn main() {}
+use chrono::{Local, DateTime};
+
+fn main() {
+    let dt: DateTime<Local> = Local::now();
+    println!("{}",dt.format("%a %b %e %T %Y").to_string())
+
+}
